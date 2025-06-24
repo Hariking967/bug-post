@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'; // Enables dynamic rendering
+
 import React from 'react';
 import Answers from './components/Answers';
 import NewAnswer from './components/NewAnswer';
