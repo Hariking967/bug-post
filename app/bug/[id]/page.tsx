@@ -2,15 +2,16 @@ import { prisma } from '@/app/lib/prisma';
 import Answers from './components/Answers';
 import NewAnswer from './components/NewAnswer';
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
+// type PageProps = {
+//   params: {
+//     id: string;
+//   };
+// };
 
-export default async function BugPage({ params }: PageProps) {
+export default async function BugPage({params}: {params: Promise<{ id: string }>}) {
+  const {id} = await params
   const bugData = await prisma.bug.findFirst({
-    where: { id: params.id },
+    where: { id: id },
   });
 
   const title = bugData?.title ?? 'Title not found';
@@ -30,8 +31,8 @@ export default async function BugPage({ params }: PageProps) {
       <hr className="border-gray-600 mb-6" />
       <pre className="text-xl mb-6 whitespace-pre-wrap">{desc}</pre>
 
-      <NewAnswer bugId={params.id} />
-      <Answers bugId={params.id} />
+      <NewAnswer bugId={id} />
+      <Answers bugId={id} />
     </div>
   );
 }
