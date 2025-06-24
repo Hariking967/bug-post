@@ -35,7 +35,7 @@ export default function SingIN() {
     console.log(contains);
     if (contains == -1)
     {
-      let errorp = document.getElementById('error_msg')
+      const errorp = document.getElementById('error_msg')
       if (errorp)
       {
         errorp.innerText = "No such user"
@@ -44,7 +44,7 @@ export default function SingIN() {
     }
     if (form.email != getData[contains].email)
     {
-      let errorp = document.getElementById('error_msg')
+      const errorp = document.getElementById('error_msg')
       if (errorp)
       {
         errorp.innerText = "Email incorrect";
@@ -53,7 +53,7 @@ export default function SingIN() {
     }
     if (form.pwd != getData[contains].pwd)
     {
-      let errorp = document.getElementById('error_msg')
+      const errorp = document.getElementById('error_msg')
       if (errorp)
       {
         errorp.innerText = "Password incorrect";

@@ -28,13 +28,13 @@ export default function Signup() {
     }
     if (contains)
     {
-      let errorp = document.getElementById('error_msg')
+      const errorp = document.getElementById('error_msg')
       if (errorp)
       {
         errorp.innerText = "User already exists. Please signin";
       }
     }
-    let newId = getData.length+1;
+    const newId = getData.length+1;
     const userData = await fetch('http://localhost:3000/api/userapi', {
     method: 'POST',
     headers: {

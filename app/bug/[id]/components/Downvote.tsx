@@ -11,8 +11,8 @@ export default function Downvote({ answer }: { answer: {
   upvote: number;
   downvote: number;
 } }) {
-  let initialVote = answer.downvote
-  let [vote, setVote] = useState(initialVote)
+  const initialVote = answer.downvote
+  const [vote, setVote] = useState(initialVote)
   const handleDownvote = async () =>{
     const res = await fetch("/api/downvote",{
         method: 'POST',
@@ -21,7 +21,7 @@ export default function Downvote({ answer }: { answer: {
             ans: answer
         })
     })
-    let newVote = await res.json()
+    const newVote = await res.json()
     setVote(newVote)
   }
   return (  

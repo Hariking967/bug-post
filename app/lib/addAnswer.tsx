@@ -8,7 +8,7 @@ export default async function addAnswer({bugId, ans}:{bugId:string, ans:string})
     const session = await getServerSession(authOptions);
     if (session)
     {
-        let userName = session.user?.name || "user"
+        const userName = session.user?.name || "user"
         const userFind = await prisma.user.findFirst({
             where: {userName: userName}
         })

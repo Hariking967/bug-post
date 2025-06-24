@@ -8,7 +8,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
   if (session)
   {
-    let existUser = await prisma.user.findFirst({
+    const existUser = await prisma.user.findFirst({
       where : {email : session.user?.email || ""}
     })
     if (!existUser)

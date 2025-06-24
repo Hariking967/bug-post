@@ -6,9 +6,9 @@ type Props = {
 }
 
 export default function NewAnswer({bugId}:Props) {
-    let [ans, setAns] = useState("")
-    let [userId, setUserId] = useState(-1)
-    let [isPending, startTransition] = useTransition()
+    const [ans, setAns] = useState("")
+    const [userId, setUserId] = useState(-1)
+    const [isPending, startTransition] = useTransition()
     function handleSubmit(e: React.FormEvent)
     {
         e.preventDefault()

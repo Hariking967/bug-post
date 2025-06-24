@@ -4,9 +4,9 @@ import { useState, useTransition } from 'react'
 import addQuestion from '../lib/addQuestion';
 
 export default function page() {
-  let [title, setTitle] = useState('');
-  let [desc, setDesc] = useState('');
-  let [isPending, startTransition] = useTransition()
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [isPending, startTransition] = useTransition()
   function handleSubmit()
   {
     startTransition(()=>{

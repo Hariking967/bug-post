@@ -7,14 +7,14 @@ import Upvote from './Upvote';
 import Downvote from './Downvote';
 
 export default async function Answers({bugId}:Props) {
-    let answerDatas = await prisma.answer.findMany({
+    const answerDatas = await prisma.answer.findMany({
       where: {bugId: bugId}
     });
     const convert = async (userid: string) =>{
       const userData = await prisma.user.findFirst({
         where: {id: userid}
       })
-      let userId = userData?.userName
+      const userId = userData?.userName
       return userId
     }
 
@@ -48,7 +48,7 @@ export default async function Answers({bugId}:Props) {
       }
       
     }
-    let AnswersContent = answerDatas.map((answer)=>
+    const AnswersContent = answerDatas.map((answer)=>
         (
             <div key={answer.id} className="flex flex-col bg-gray-700 p-6 rounded-2xl shadow-md my-4">
               <p className="text-xl text-gray-500 font-medium mb-3">
