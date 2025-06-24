@@ -1,36 +1,34 @@
-import React from 'react'
-// import data from '../../data/bugs.json'
-// import getUserById from '../../lib/getUserById'
-import Answers from './components/Answers'
-import NewAnswer from './components/NewAnswer'
-// import { getServerSession } from 'next-auth'
-import {prisma} from "@/app/lib/prisma"
+import React from 'react';
+import Answers from './components/Answers';
+import NewAnswer from './components/NewAnswer';
+import { prisma } from '@/app/lib/prisma';
 
-type Props = { params : {id : string} }
+type Props = { params: { id: string } };
 
-export default async function page({params: {id}} : Props) {
-    const bugData = await prisma.bug.findFirst(
-      {where: {
-        id: id
-      }}
-    )
-    const title = bugData?.title || "title";
-    const desc = bugData?.desc || "desc";
-    const userId = bugData?.userId || "userId";
-    
-    const userData = await prisma.user.findFirst({
-      where: {id: userId}
-    })
-    const userName = userData?.userName;
+export default async function BugPage({ params }: Props) {
+  const bugData = await prisma.bug.findFirst({
+    where: { id: params.id },
+  });
+
+  const title = bugData?.title || 'title';
+  const desc = bugData?.desc || 'desc';
+  const userId = bugData?.userId || 'userId';
+
+  const userData = await prisma.user.findFirst({
+    where: { id: userId },
+  });
+
+  const userName = userData?.userName || 'Anonymous';
+
   return (
-    <div className='flex flex-col bg-gray-800'>
-        <p>Posted by: {userName}</p>
-        <p className='text-5xl ml-5 mb-5 mt-5'>{title}</p>
-        <hr></hr>
-        <hr></hr>
-        <pre className='text-3xl p-5'>{desc}</pre>
-        <NewAnswer bugId = {id}></NewAnswer>
-        <Answers bugId = {id}></Answers>
+    <div className="flex flex-col bg-gray-800 min-h-screen px-6 py-8 text-white">
+      <p className="text-sm text-gray-400 mb-2">Posted by: {userName}</p>
+      <p className="text-4xl font-bold mb-4">{title}</p>
+      <hr className="border-gray-600 mb-6" />
+      <pre className="text-xl mb-6 whitespace-pre-wrap">{desc}</pre>
+
+      <NewAnswer bugId={params.id} />
+      <Answers bugId={params.id} />
     </div>
-  )
+  );
 }
